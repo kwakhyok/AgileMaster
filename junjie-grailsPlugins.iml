@@ -10,6 +10,7 @@
           <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/activiti-spring-security-0.4.6/grails-app/views" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/activiti-5.8.2/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/activiti-5.8.2/grails-app/views" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -43,6 +44,12 @@
       <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/lang-selector-0.3/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/lang-selector-0.3/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/grails-app/services" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/spring-security-core-1.2.7.3">
       <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/spring-security-core-1.2.7.3/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/spring-security-core-1.2.7.3/src/groovy" isTestSource="false" />
@@ -66,10 +73,12 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
           <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/activiti-5.8.2/lib" />
           <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/tomcat-1.3.7/lib" />
+          <root url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
         <jarDirectory url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/activiti-5.8.2/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/searchable-0.6.3/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.3.7/projects/junjie/plugins/tomcat-1.3.7/lib" recursive="false" />
       </library>
     </orderEntry>

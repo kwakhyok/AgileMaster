@@ -359,10 +359,10 @@ table.listing td {
 	text-shadow:#fff 1px 1px 1px;
 	color:#000;
 }
-table.listing .row1 td {
+table.listing .odd td {
 	background:#fff;
 }
-table.listing .row2 td {
+table.listing .even td {
 	background:#dfdfdf;
 }
 /*TABLES - END*/
@@ -536,7 +536,7 @@ table.listing .row2 td {
 
 /*DASHBOARD START*/
 #dashboardWrap {
-	padding:10px 5px 0 5px;
+	padding:10px 5px 0 0px;
 	overflow:hidden;
 	background-color:#fff;
 	border: 1px #dfdfdf solid;
@@ -546,7 +546,7 @@ table.listing .row2 td {
 	display:inline;
 	margin:0 4px 10px 4px;
 	padding:5px 10px;
-	width:194px;
+	width:175px;
 	height:80px;
 	list-style-type:none;
 	background:#f9f9f9 url(../img/dashboardBg.gif) no-repeat right top;

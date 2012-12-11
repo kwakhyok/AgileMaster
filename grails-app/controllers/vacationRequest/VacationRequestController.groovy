@@ -17,7 +17,7 @@ package vacationRequest
 import org.grails.activiti.ApprovalStatus
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.grails.activiti.ActivitiConstants
-  /**
+/**
  *
  * @author <a href='mailto:limcheekin@vobject.com'>Lim Chee Kin</a>
  *
@@ -26,48 +26,48 @@ import org.grails.activiti.ActivitiConstants
 class VacationRequestController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-	  static activiti = true
+    static activiti = true
 
     def index = {
         redirect(action: "list", params: params)
     }
 
     def start = {
-				start(params)
-		}
-	
+        start(params)
+    }
+
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [vacationRequestInstanceList: VacationRequest.list(params), 
-				vacationRequestInstanceTotal: VacationRequest.count(),
-				myTasksCount: assignedTasksCount]				
+        [vacationRequestInstanceList: VacationRequest.list(params),
+                vacationRequestInstanceTotal: VacationRequest.count(),
+                myTasksCount: assignedTasksCount]
     }
 
     def create = {
         def vacationRequestInstance = new VacationRequest()
-        String sessionUsernameKey = CH.config.activiti.sessionUsernameKey?:ActivitiConstants.DEFAULT_SESSION_USERNAME_KEY
-				vacationRequestInstance.employeeName = session[sessionUsernameKey]
+        String sessionUsernameKey = CH.config.activiti.sessionUsernameKey ?: ActivitiConstants.DEFAULT_SESSION_USERNAME_KEY
+        vacationRequestInstance.employeeName = session[sessionUsernameKey]
         vacationRequestInstance.properties = params
         return [vacationRequestInstance: vacationRequestInstance,
                 myTasksCount: assignedTasksCount]
     }
 
-    def save = {		
+    def save = {
         def vacationRequestInstance = new VacationRequest(params)
         if (vacationRequestInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'vacationRequest.label', default: 'VacationRequest'), vacationRequestInstance.id])}"
             params.id = vacationRequestInstance.id
-						if (params.complete) {
-							completeTask(params)
-						} else {
-							params.action="show"
-							saveTask(params)
-						}
-			      redirect(action: "show", params: params)
+            if (params.complete) {
+                completeTask(params)
+            } else {
+                params.action = "show"
+                saveTask(params)
+            }
+            redirect(action: "show", params: params)
         }
         else {
-            render(view: "create", model: [vacationRequestInstance: vacationRequestInstance, 
-                                           myTasksCount: assignedTasksCount])
+            render(view: "create", model: [vacationRequestInstance: vacationRequestInstance,
+                    myTasksCount: assignedTasksCount])
         }
     }
 
@@ -79,25 +79,27 @@ class VacationRequestController {
         }
         else {
             [vacationRequestInstance: vacationRequestInstance,
-             myTasksCount: assignedTasksCount]				
+                    myTasksCount: assignedTasksCount]
         }
     }
-	
-   def approval = {
-        show()
-      }	
 
-	    
-   def performApproval = {
+    def approval = {
+        show()
+    }
+
+
+    def performApproval = {
         def vacationRequestInstance = VacationRequest.get(params.id)
         if (vacationRequestInstance) {
             if (params.version) {
                 def version = params.version.toLong()
                 if (vacationRequestInstance.version > version) {
-                    
-                    vacationRequestInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'vacationRequest.label', default: 'VacationRequest')] as Object[], "Another user has updated this VacationRequest while you were editing")
+
+                    vacationRequestInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                            [message(code: 'vacationRequest.label', default: 'VacationRequest')] as Object[],
+                            "Another user has updated this VacationRequest while you were editing")
                     render(view: "approval", model: [vacationRequestInstance: vacationRequestInstance,
-                                                     myTasksCount: assignedTasksCount])
+                            myTasksCount: assignedTasksCount])
                     return
                 }
             }
@@ -105,30 +107,30 @@ class VacationRequestController {
             if (!vacationRequestInstance.hasErrors() && vacationRequestInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'vacationRequest.label', default: 'VacationRequest'), vacationRequestInstance.id])}"
                 if (params.complete) {
-										params.id = vacationRequestInstance.id
-										params.vacationApproved = vacationRequestInstance.approvalStatus == ApprovalStatus.APPROVED
-										params.from = grailsApplication.config.activiti.mailServerDefaultFrom
-										params.emailTo = grailsApplication.config.activiti.mailServerDefaultFrom
-										params.approvalRemark = params.approvalRemark && params.approvalRemark != "" ? params.approvalRemark : "No Approval Remark."
-		                completeTask(params)
-								} else {
-										params.action="approval"
-										saveTask(params)
-								}				
-								params.isApproval = true
+                    params.id = vacationRequestInstance.id
+                    params.vacationApproved = vacationRequestInstance.approvalStatus == ApprovalStatus.APPROVED
+                    params.from = grailsApplication.config.activiti.mailServerDefaultFrom
+                    params.emailTo = grailsApplication.config.activiti.mailServerDefaultFrom
+                    params.approvalRemark = params.approvalRemark && params.approvalRemark != "" ? params.approvalRemark : "No Approval Remark."
+                    completeTask(params)
+                } else {
+                    params.action = "approval"
+                    saveTask(params)
+                }
+                params.isApproval = true
                 redirect(action: "show", id: vacationRequestInstance.id, params: params)
-								
+
             }
             else {
                 render(view: "approval", model: [vacationRequestInstance: vacationRequestInstance,
-                                                 myTasksCount: assignedTasksCount])
+                        myTasksCount: assignedTasksCount])
             }
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'vacationRequest.label', default: 'VacationRequest'), params.id])}"
             redirect(controller: "task", action: "myTaskList")
         }
-      }	
+    }
 
     def edit = {
         def vacationRequestInstance = VacationRequest.get(params.id)
@@ -142,35 +144,37 @@ class VacationRequestController {
         }
     }
 
-    def update = {			
+    def update = {
         def vacationRequestInstance = VacationRequest.get(params.id)
         if (vacationRequestInstance) {
             if (params.version) {
                 def version = params.version.toLong()
                 if (vacationRequestInstance.version > version) {
-                    
-                    vacationRequestInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'vacationRequest.label', default: 'VacationRequest')] as Object[], "Another user has updated this VacationRequest while you were editing")
+
+                    vacationRequestInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'vacationRequest.label',
+                            default: 'VacationRequest')] as Object[],
+                            "Another user has updated this VacationRequest while you were editing")
                     render(view: "edit", model: [vacationRequestInstance: vacationRequestInstance,
-                                                 myTasksCount: assignedTasksCount])
+                            myTasksCount: assignedTasksCount])
                     return
                 }
             }
             vacationRequestInstance.properties = params
             if (!vacationRequestInstance.hasErrors() && vacationRequestInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'vacationRequest.label', default: 'VacationRequest'), vacationRequestInstance.id])}"
-				        Boolean isComplete = params["_action_update"].equals(message(code: 'default.button.complete.label', default: 'Complete'))
-								if (isComplete) {
-										params.resendRequest = vacationRequestInstance.resendRequest
-										completeTask(params)
-								} else {
-										params.action="show"
-										saveTask(params)
-								}				
-                redirect(action: "show", id: vacationRequestInstance.id, params: [taskId:params.taskId, complete:isComplete?:null])
+                Boolean isComplete = params["_action_update"].equals(message(code: 'default.button.complete.label', default: 'Complete'))
+                if (isComplete) {
+                    params.resendRequest = vacationRequestInstance.resendRequest
+                    completeTask(params)
+                } else {
+                    params.action = "show"
+                    saveTask(params)
+                }
+                redirect(action: "show", id: vacationRequestInstance.id, params: [taskId: params.taskId, complete: isComplete ?: null])
             }
             else {
                 render(view: "edit", model: [vacationRequestInstance: vacationRequestInstance,
-                                             myTasksCount: assignedTasksCount])
+                        myTasksCount: assignedTasksCount])
             }
         }
         else {
@@ -184,7 +188,7 @@ class VacationRequestController {
         if (vacationRequestInstance) {
             try {
                 vacationRequestInstance.delete(flush: true)
-								deleteTask(params.taskId)
+                deleteTask(params.taskId)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'vacationRequest.label', default: 'VacationRequest'), params.id])}"
                 redirect(controller: "task", action: "myTaskList")
             }

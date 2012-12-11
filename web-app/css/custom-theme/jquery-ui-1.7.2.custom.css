@@ -337,7 +337,7 @@
 
 /* Datepicker
 ----------------------------------*/
-.ui-datepicker { width: 13.3em; padding: .2em .2em 0; border: 1px solid #bebb9e; }
+/*.ui-datepicker { width: 13.3em; padding: .2em .2em 0; border: 1px solid #bebb9e; }*/
 .ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0;background:#6d6d6d; color:#FFF; }
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
 .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }

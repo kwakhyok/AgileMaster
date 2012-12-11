@@ -6,11 +6,13 @@ class ProcessDemoController {
     static activiti = true
 
     def index = {
-
+       processDemo = new ProcessDemo()
+       processDemo.properties = params
+       return [processDemo: processDemo]
     }
 
 
     def save={
-        println "save"
+        render params
     }
 }

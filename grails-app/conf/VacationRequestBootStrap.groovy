@@ -14,6 +14,8 @@
  */
 
 import com.oldwinner.Identity.*
+import com.oldwinner.project.ProjectCategory
+import com.oldwinner.project.Project
 
 /**
  *
@@ -37,7 +39,10 @@ class VacationRequestBootStrap {
 
         environments {
             production { createUsersAndGroups() }
-            development { createUsersAndGroups() }
+            development {
+                createUsersAndGroups()
+
+            }
         }
     }
 
@@ -54,40 +59,61 @@ class VacationRequestBootStrap {
             managerRole.id = 'ROLE_MANAGER'
             managerRole.save(failOnError: true)
         }
-        def kermit = User.findByUsername('kermit') ?: new User(
-                username: 'kermit',
-                email: 'kermit@activiti.org',
-                firstName: 'Kermit',
-                lastName: 'User',
-                password: springSecurityService.encodePassword('kermit'),
+        def yguo = User.findByUsername('yguo') ?: new User(
+                username: 'yguo',
+                email: 'guo@oldwinner.com',
+                password: springSecurityService.encodePassword('yguo'),
+                firstName: 'Yi',
+                lastName: 'Guo',
                 enabled: true).save(failOnError: true)
-        def fozzie = User.findByUsername('fozzie') ?: new User(
-                username: 'fozzie',
-                email: 'fozzie@activiti.org',
-                firstName: 'Fozzie',
-                lastName: 'Management',
-                password: springSecurityService.encodePassword('fozzie'),
+        def eric = User.findByUsername('eric') ?: new User(
+                username: 'eric',
+                email: 'eric@oldwinner.com',
+                firstName: 'Eric',
+                lastName: 'Guo',
+                password: springSecurityService.encodePassword('eric'),
                 enabled: true).save(failOnError: true)
-        def peter = User.findByUsername('peter') ?: new User(
-                username: 'peter',
-                email: 'peter@activiti.org',
-                firstName: 'Peter',
-                lastName: 'Management',
-                password: springSecurityService.encodePassword('peter'),
+        def neng = User.findByUsername('neng') ?: new User(
+                username: 'neng',
+                email: 'neng@oldwinner.com',
+                firstName: 'Neng',
+                lastName: 'Wang',
+                password: springSecurityService.encodePassword('neng'),
                 enabled: true).save(failOnError: true)
 
-        if (!kermit.authorities.contains(userRole)) {
-            UserRole.create kermit, userRole
+        if (!yguo.authorities.contains(userRole)) {
+            UserRole.create yguo, userRole
         }
 
-        if (!fozzie.authorities.contains(managerRole)) {
-            UserRole.create fozzie, managerRole
+        if (!eric.authorities.contains(managerRole)) {
+            UserRole.create eric, managerRole
         }
 
-        if (!peter.authorities.contains(managerRole)) {
-            UserRole.create peter, managerRole
+        if (!neng.authorities.contains(managerRole)) {
+            UserRole.create neng, managerRole
         }
+
+
+        def cat1 = ProjectCategory.findByName('招标')
+        new Project(name: '幕墙招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '设计招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '弱电招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '材质招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '地板招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+
+
+        def user1 = User.findByUsername('neng')
+        new Organization(representative: user1, name: '烟台幕墙工程有限公司1',
+                code: 'sdytmq001', profile:
+                        new OrganizationProfile(fullName:'烟台幕墙工程有限公司1', address: '雁归路38号 260035', registeredCapital: 1000000)).save()
+        new Organization(representative: user1, name: '烟台幕墙工程有限公司2', code: 'sdytmq002').save()
+        new Organization(representative: user1, name: '烟台幕墙工程有限公司3', code: 'sdytmq003').save()
+
+
     }
+
+
+
 
     def destroy = {
     }
