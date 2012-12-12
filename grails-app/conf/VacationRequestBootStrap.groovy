@@ -16,6 +16,7 @@
 import com.oldwinner.Identity.*
 import com.oldwinner.project.ProjectCategory
 import com.oldwinner.project.Project
+import com.oldwinner.project.Task
 
 /**
  *
@@ -103,11 +104,18 @@ class VacationRequestBootStrap {
 
 
         def user1 = User.findByUsername('neng')
-        new Organization(representative: user1, name: '烟台幕墙工程有限公司1',
+        new Organization( name: '烟台幕墙工程有限公司1',
                 code: 'sdytmq001', profile:
                         new OrganizationProfile(fullName:'烟台幕墙工程有限公司1', address: '雁归路38号 260035', registeredCapital: 1000000)).save()
-        new Organization(representative: user1, name: '烟台幕墙工程有限公司2', code: 'sdytmq002').save()
-        new Organization(representative: user1, name: '烟台幕墙工程有限公司3', code: 'sdytmq003').save()
+        new Organization( name: '烟台幕墙工程有限公司2', code: 'sdytmq002').save()
+        new Organization(name: '烟台幕墙工程有限公司3', code: 'sdytmq003').save()
+
+
+        def project = Project.findByName('幕墙招标')
+        new Task(name: '幕墙招标1', project: project, description: '幕墙招标烟台幕墙工程有限公司1', startDate: new Date(112,11,5), endDate: new Date(112, 11,18)).save(failOnError: true)
+        new Task(name: '幕墙招标2', project: project, description: '幕墙招标烟台幕墙工程有限公司2', startDate: new Date(112,10,15), endDate: new Date(112, 10,28)).save(failOnError: true)
+        new Task(name: '幕墙招标3', project: project, description: '幕墙招标烟台幕墙工程有限公司3', startDate: new Date(112,10,11), endDate: new Date(112, 10,18)).save(failOnError: true)
+        new Task(name: '幕墙招标4', project: project, description: '幕墙招标烟台幕墙工程有限公司4', startDate: new Date(112,11,2), endDate: new Date(112, 11,18)).save(failOnError: true)
 
 
     }

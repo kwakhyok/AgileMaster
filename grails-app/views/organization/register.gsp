@@ -49,7 +49,13 @@
                             <dt><label for="code">编码</label>
                                 <g:textField name="code" id="orgCode" value="${orgDetails?.code}"/></dt>
                             <dt><label for="bidStatus">投标状态</label>
-                            <g:select from="['意向','已登记', '投标', '中标', '过期']" name="bidStatus" value="${orgDetails?.bidStatus}" /></dt>
+                            <select name="bidStatus" id="bidStatus">
+                                <g:each in="${com.oldwinner.BidStatus.values()}" var="status">
+                                   <option value="${status.optionValue}">
+                                       ${message(code: status.name)}
+                                   </option>
+                                </g:each>
+                            </select> </dt>
                             <dt><label for="name">简称</label>
                                 <g:textField name="name" id="orgName" value="${orgDetails?.name}"/></dt>
                             <dt><label for="fullName">公司全称</label>

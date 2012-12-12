@@ -1,6 +1,7 @@
 package com.oldwinner.Identity
 
 import org.activiti.engine.impl.juel.ExpressionFactoryImpl
+import com.oldwinner.BidStatus
 
 class OrganizationController {
 
@@ -50,8 +51,7 @@ class OrganizationRegistrationCommand {
     static constraints = {
         code(blank: false, size: 5..10)
         name(blank: false)
-        bidStatus(inList: ['意向', '已登记', '投标', '中标', '过期'], blank: false)
-
+        bidStatus(inList: BidStatus.list(), blank: false)
         fullName(blank: false, size: 5..40)
         registeredCapital(nullable: true)
         businessScope(nullable: true)
