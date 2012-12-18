@@ -16,16 +16,17 @@ $(document).ready(function () {
     });
     //DATEPICKER END
 
+
     // FULLCALENDAR START
 
     $(function () {
         $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay'
+            header:{
+                left:'prev,next today',
+                center:'title',
+                right:'month,basicWeek,basicDay'
             },
-            events: function(start, end, callback) {
+            events:function (start, end, callback) {
                 $.getJSON("listAsJson",
                     {start:start.getTime(), end:end.getTime()},
                     function (result) {
@@ -38,40 +39,39 @@ $(document).ready(function () {
             },
             editable:true,
 
-            loading: function(bool) {
-                if (bool) $('#loading').show();
-                else $('#loading').hide();
-            },
-            eventRender: function(task, element) {
+            eventRender:function (event, element) {
                 // render event details using qTip
                 element.qtip({
-                    content: '<p><b>Description</b>:<br/>' + task.description + '</p><br/>' +
-                        '<p><b>StartDate</b>:<br/>' + task.start+ '</p><br/>' +
-                        '<p><b>EndDate</b>:<br/>' + task.end + ' </p><br/>' +
-                        '<p><input type="button" onclick=\"cancelEvent(' + task.id + '); \"</p>' +
-                        ' value=\"Cancel\"></p>',
-                    position: {
+                    content:'<p><b>Description</b>:<br/>' + calEvent.description + '</p><br/>\
+ <p><b>Start</b>:<br/>' + calEvent.start + '</p><br/>\
+ <p><b>End</b>:<br/>' + calEvent.end + '</p><br/>\
+ <p><input type="button" onclick=\"cancelEvent(' + calEvent.id + ');\"\
+ value=\"Cancel\"></p>',
+                    position:{
                         corner:{
                             target:'rightTop',
                             tooltip:'leftBottom'
                         }
                     },
-                    show:{solo: true},
-                    hide: {
-                        delay: 800
+                    show:{solo:true},
+                    hide:{
+                        delay:800
                     },
                     style:{
                         border:{
                             radius:8,
                             width:3
                         },
-                        padding: '5px 15px',
-                        tip: true,
-                        name: 'cream'
+                        padding:'5px 15px',
+                        tip:true,
+                        name:'cream' // And style it with the preset dark theme
                     }
                 });
                 return element;
             }
+
+
+
 
         });
     });

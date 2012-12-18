@@ -1,6 +1,7 @@
 package com.oldwinner.Identity
 
 import com.oldwinner.BidStatus
+import com.oldwinner.project.BidActivity
 
 class Organization {
 
@@ -8,7 +9,6 @@ class Organization {
 
     String code
     String name
-    BidStatus bidStatus = BidStatus.INTENTION
 
     OrganizationProfile profile
 
@@ -16,12 +16,15 @@ class Organization {
         code(blank: false, size: 5..10)
         profile(nullable: true)
         name(blank: false)
-        bidStatus (inList: BidStatus.list(), blank: false)
     }
 
-    static hasMany = [employees: User]
+    static hasMany = [employees: User, bidActivities: BidActivity]
 
     static mapping = {
         profile lazy: false
+    }
+
+    public String toString(){
+        code + ": " + name
     }
 }

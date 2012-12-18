@@ -21,11 +21,11 @@ class BidSection {
 
         parentSection(nullable: true)
         bidDate( nullable:  true)
-        type(inList: ['施工类', '设计类', '材料设备类'])
+        type(inList: ['施工类', '设计类', '材料设备类'])        //TODO: i18n BidSection Type
 
     }
 
-    static hasMany = [subSections: BidSection, biddingOrgs: Organization]
+    static hasMany = [subSections: BidSection, bidActivities:BidActivity]
 
     static mapping = {
         sort dateCreated: 'desc'

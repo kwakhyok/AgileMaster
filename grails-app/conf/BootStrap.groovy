@@ -8,6 +8,9 @@ import com.oldwinner.Identity.User
 class BootStrap {
 
     def init = { servletContext ->
+
+      //  GoogleChartTagLib.apiString = "http://localhost:8080/junjie/chart?"
+
         if(DocumentTag.count()==0){
            // createDefaultDocumentTags()
         }

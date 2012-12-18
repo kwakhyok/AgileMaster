@@ -8,7 +8,7 @@
 </div>
 
 <div id="logo" style="margin-top: -6px; margin-left: 1px">
-    <img src="../img/logo.png" alt="logo" style="margin-top: 0px" />
+    <img src="${createLinkTo(dir:'img', file:'logo.png')}" alt="logo" style="margin-top: 0px" />
     <!-- <h1 style="color:white; font-size:250%;margin-top:0px;margin-bottom: 0px">君捷软件</h1> -->
     <div style="margin-bottom:0px;padding-bottom: 0px"><langs:selector langs="en,de,zh_CN"/></div>
 </div>
