@@ -32,7 +32,7 @@ class DashboardController {
     }
 
     def goToInformation ={
-
+        redirect(controller: 'organization', action: 'register')
     }
 
     def goToAuthentication={
@@ -40,6 +40,8 @@ class DashboardController {
     }
 
     def goToSettings={
+
+        render 'Settings!'
 
     }
 

@@ -2,81 +2,6 @@ var IE6 = (navigator.userAgent.indexOf("MSIE 6") >= 0) ? true : false; //Detecti
 
 
 $(document).ready(function () {
-
-    //DATEPICKER START
-    $(function () {
-        $("#datepicker").datepicker({
-            showOtherMonths:true,
-            selectOtherMonths:true,
-            onSelect:function (text, inst) {
-                alert(text);
-            }
-        });
-
-    });
-    //DATEPICKER END
-
-
-    // FULLCALENDAR START
-
-    $(function () {
-        $('#calendar').fullCalendar({
-            header:{
-                left:'prev,next today',
-                center:'title',
-                right:'month,basicWeek,basicDay'
-            },
-            events:function (start, end, callback) {
-                $.getJSON("listAsJson",
-                    {start:start.getTime(), end:end.getTime()},
-                    function (result) {
-                        for (var i = 0; i < result.length; i++) {
-                            result[i].start = $.fullCalendar.parseISO8601(result[i].start, false);
-                            result[i].end = $.fullCalendar.parseISO8601(result[i].end, false);
-                        }
-                        callback(result);
-                    });
-            },
-            editable:true,
-
-            eventRender:function (event, element) {
-                // render event details using qTip
-                element.qtip({
-                    content:'<p><b>Description</b>:<br/>' + calEvent.description + '</p><br/>\
- <p><b>Start</b>:<br/>' + calEvent.start + '</p><br/>\
- <p><b>End</b>:<br/>' + calEvent.end + '</p><br/>\
- <p><input type="button" onclick=\"cancelEvent(' + calEvent.id + ');\"\
- value=\"Cancel\"></p>',
-                    position:{
-                        corner:{
-                            target:'rightTop',
-                            tooltip:'leftBottom'
-                        }
-                    },
-                    show:{solo:true},
-                    hide:{
-                        delay:800
-                    },
-                    style:{
-                        border:{
-                            radius:8,
-                            width:3
-                        },
-                        padding:'5px 15px',
-                        tip:true,
-                        name:'cream' // And style it with the preset dark theme
-                    }
-                });
-                return element;
-            }
-
-
-
-
-        });
-    });
-    // FULL CALENDAR END
-
     //TOP NAVIGATION DROPDOWN MENU START
     $(function () {
         $("ul.dropdown li").hover(function () {
@@ -93,6 +18,23 @@ $(document).ready(function () {
         $("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
     });
     //TOP NAVIGATION DROPDOWN MENU END
+
+
+    //DATEPICKER START
+    $(function () {
+        $("#datepicker").datepicker({
+            showOtherMonths:true,
+            selectOtherMonths:true,
+            onSelect:function (text, inst) {
+                alert(text);
+            }
+        });
+
+    });
+    //DATEPICKER END
+
+
+
 
 
     //CHARTS START

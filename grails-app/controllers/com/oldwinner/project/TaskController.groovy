@@ -36,6 +36,7 @@ class TaskController {
    }
 
    def listAsCalendar = {
+
        [tasks: Task.findAll()]
    }
 }

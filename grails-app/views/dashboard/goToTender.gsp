@@ -46,7 +46,6 @@
     <script src="${createLinkTo(dir:'js', file:'jquery.fn.gantt.js')}"></script>
     <script src="${createLinkTo(dir:'js', file:'bootstrap-tooltip.js')}"></script>
     <script src="${createLinkTo(dir:'js', file:'bootstrap-popover.js')}"></script>
-    <script src="${createLinkTo(dir:'js', file:'prettify.js')}"></script>
     <script type="text/javascript">
 
         $(function () {

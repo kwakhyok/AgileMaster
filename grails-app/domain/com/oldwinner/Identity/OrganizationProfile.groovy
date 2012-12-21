@@ -29,7 +29,7 @@ class OrganizationProfile {
         orgEmail(email: true, nullable: true)
         telephone(blank:false, nullable: true)
         brand(blank: false, nullable: true)
-        memo(size: 1..500, blank: false)
+        memo(nullable: true)
         registerDate(nullable: true)
     }
 

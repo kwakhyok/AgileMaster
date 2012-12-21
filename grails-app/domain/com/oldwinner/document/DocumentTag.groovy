@@ -4,7 +4,6 @@ class DocumentTag {
 
     String name
     String description
-
     Date dateCreated
 
     static belongsTo = Document
@@ -13,4 +12,5 @@ class DocumentTag {
         name(blank: false)
         description(nullable: true)
     }
+    static hasMany = [documents:Document]
 }

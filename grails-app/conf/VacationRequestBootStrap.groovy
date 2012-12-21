@@ -42,12 +42,13 @@ class VacationRequestBootStrap {
             production { createUsersAndGroups() }
             development {
                 createUsersAndGroups()
+                createDemoOrganizations()
 
             }
         }
     }
 
-    private void createUsersAndGroups() {
+     void createUsersAndGroups() {
         def userRole = Role.findByAuthority('ROLE_USER')
         if (!userRole) {
             userRole = new Role(authority: 'ROLE_USER', name: 'User')
@@ -96,31 +97,202 @@ class VacationRequestBootStrap {
 
 
         def cat1 = ProjectCategory.findByName('招标')
-        new Project(name: '幕墙招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
-        new Project(name: '设计招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
-        new Project(name: '弱电招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
-        new Project(name: '材质招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
-        new Project(name: '地板招标',category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '幕墙招标', category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '设计招标', category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '弱电招标', category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '材质招标', category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
+        new Project(name: '地板招标', category: cat1, owner: eric, startDate: new Date(), endDate: new Date()).save(flush: true, failOnError: true)
 
 
-        def user1 = User.findByUsername('neng')
-        new Organization( name: '烟台幕墙工程有限公司1',
-                code: 'sdytmq001', profile:
-                        new OrganizationProfile(fullName:'烟台幕墙工程有限公司1', address: '雁归路38号 260035', registeredCapital: 1000000)).save()
-        new Organization( name: '烟台幕墙工程有限公司2', code: 'sdytmq002').save()
-        new Organization(name: '烟台幕墙工程有限公司3', code: 'sdytmq003').save()
 
 
         def project = Project.findByName('幕墙招标')
-        new Task(name: '幕墙招标1', project: project, description: '幕墙招标烟台幕墙工程有限公司1', startDate: new Date(112,11,5), endDate: new Date(112, 11,18)).save(failOnError: true)
-        new Task(name: '幕墙招标2', project: project, description: '幕墙招标烟台幕墙工程有限公司2', startDate: new Date(112,10,15), endDate: new Date(112, 10,28)).save(failOnError: true)
-        new Task(name: '幕墙招标3', project: project, description: '幕墙招标烟台幕墙工程有限公司3', startDate: new Date(112,10,11), endDate: new Date(112, 10,18)).save(failOnError: true)
-        new Task(name: '幕墙招标4', project: project, description: '幕墙招标烟台幕墙工程有限公司4', startDate: new Date(112,11,2), endDate: new Date(112, 11,18)).save(failOnError: true)
+        new Task(name: '幕墙招标1', project: project, description: '幕墙招标烟台幕墙工程有限公司1', startDate: new Date(112, 11, 5), endDate: new Date(112, 11, 18)).save(failOnError: true)
+        new Task(name: '幕墙招标2', project: project, description: '幕墙招标烟台幕墙工程有限公司2', startDate: new Date(112, 10, 15), endDate: new Date(112, 10, 28)).save(failOnError: true)
+        new Task(name: '幕墙招标3', project: project, description: '幕墙招标烟台幕墙工程有限公司3', startDate: new Date(112, 10, 11), endDate: new Date(112, 10, 18)).save(failOnError: true)
+        new Task(name: '幕墙招标4', project: project, description: '幕墙招标烟台幕墙工程有限公司4', startDate: new Date(112, 11, 2), endDate: new Date(112, 11, 18)).save(failOnError: true)
 
 
     }
 
+    void createDemoOrganizations(){
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
 
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+        new Organization(name: '幕墙工程A公司',
+                code: 'sdytmq001',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司A', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程B公司',
+                code: 'sdytmq002',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司B', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程C公司',
+                code: 'sdytmq003',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司C', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程D公司',
+                code: 'sdytmq004',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司D', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程E公司',
+                code: 'sdytmq005',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司E', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程F公司',
+                code: 'sdytmq006',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司F', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程G公司',
+                code: 'sdytmq007',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司G', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+        new Organization(name: '幕墙工程H公司',
+                code: 'sdytmq008',
+                profile: new OrganizationProfile(fullName: '烟台幕墙工程有限公司H', address: '雁归路38号 260035', registeredCapital: 1000000)).save(failOnError: true)
+
+
+    }
 
 
     def destroy = {

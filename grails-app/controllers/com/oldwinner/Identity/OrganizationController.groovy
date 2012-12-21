@@ -25,9 +25,20 @@ class OrganizationController {
         [userDetails:  urc]
     }
 
+
+
+
     def list = {
-        [organizations: Organization.findAll(), organizationsTotal:Organization.count()]
+        [organizations: Organization.findAll(), organizationTotal:Organization.count()]
     }
+
+    def manage = {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [organizations: Organization.list(params), organizationTotal: Organization.count()]
+    }
+
+
+
 }
 
 class OrganizationRegistrationCommand {
